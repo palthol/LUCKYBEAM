@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lbeam"
+version = "0.1.0"
+authors = [
+  { name="Palthol", email="palthological@gmail.com" },
+]
+description = "A fast, preset-driven file finder for the command line."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "click",
+    "toml",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/palthol/lbeam"
+"Bug Tracker" = "https://github.com/palthol/lbeam/issues"
+
+[project.scripts]
+lbeam = "lbeam.cli:cli"
+ff = "lbeam.cli:search"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]  # Look for packages in the 'src' directory
