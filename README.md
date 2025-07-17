@@ -18,47 +18,53 @@ pip install -e .[test]
 
 ## Usage
 
-`lbeam` provides several commands to search for files and manage configurations.
+`lbeam` provides several commands to search for files and manage presets.
 
-### Basic Search
+### Quick Search (`ff`)
 
-To search for files containing one or more keywords:
+For the most common use case, use the `ff` command as a direct shortcut for a keyword search.
+
+```bash
+# Find all files containing "routes"
+ff routes
+
+# Search recursively for "api" only in .py files
+ff api -r --ext .py
+```
+
+### Full Command (`lbeam`)
+
+The `lbeam` command gives you access to all features, including presets.
+
+#### Basic Search
 
 ```bash
 # Search for files containing "dashboard" and "api"
 lbeam search dashboard api
 
-# Search recursively through subdirectories
-lbeam search my_function -r
-
-# Search only within .py files
-lbeam search "import os" --ext .py
-
 # Use a regular expression to find a pattern
 lbeam search "User\d+" --regex
 ```
 
-### Using Presets
+#### Preset Management
 
-Presets are pre-configured searches.
+Presets are pre-configured searches. You can use built-in presets or create your own.
 
 ```bash
-# List all available presets
-lbeam list-presets
+# List all available presets (built-in and custom)
+lbeam preset list
 
 # Run the built-in 'WebDev' preset
-lbeam preset WebDev
-```
+lbeam preset run WebDev
 
-### Configuration
+# Create a new custom preset called 'logs'
+lbeam preset add logs -k "ERROR" -k "WARN" --ext .log
 
-You can view and set configuration values, though this feature is currently basic. The configuration is stored at `~/.config/lbeam/config.toml`.
+# Run your new custom preset
+lbeam preset run logs
 
-```bash
-# Example of setting a config value (for future use)
-lbeam config my-preset-name '{"keywords": ["foo", "bar"]}'
+# Remove a custom preset
+lbeam preset rm logs
 ```
 
 ---
-
-This project is licensed under the MIT License.
